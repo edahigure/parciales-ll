@@ -1,0 +1,252 @@
+\documentclass[a4paper,10pt]{book}
+\usepackage[utf8]{inputenc}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} %francais, polish, spanish, ...
+\usepackage[T1]{fontenc}
+
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{latexsym}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+
+
+
+\usepackage{lmodern} %Type1-font for non-english texts and characters
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{ mathrsfs }
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{subcaption}
+
+\def \ep{\epsilon}
+
+
+\begin{document}
+
+
+\section{Introducci\'onwww}
+Queremos buscar los m\'inimos del siguiente problema:$\mathscr{L}$ es un operador lineal
+$\mathscr{L} u=f$.   Si definimos
+\[A(u,v)=\int\int_{\Omega} \mathscr{L} u v  dx dy \] 
+donde $dx dy$ representar\'a un diferencial de area y en general lo omitiremos.
+$A$ es tal que $A(u,v)\geq \alpha {|| u ||}^2$ si  $u_0$ es m\'inimo de 
+\[A(u,u)-2 (f,u) \]
+donde se define
+\[(f,u)=\int\int_{\Omega} f u .\]
+entonces a $u_0$ se le llama la soluci\'on generalizada de $\mathscr{L} u=f$. El operador $\mathscr{L}$ puede ser 
+por ejemplo la  biarm\'onica $\Delta^2$.
+si
+\[\int\int_{\Omega} \mathscr{L} u\phi =\int \int_{\Omega} f \phi  \]
+para todo $\phi \in C_0^\infty$, entonces definimos el operador autoadjunto como 
+\[\int\int_{\Omega} \mathscr{L}^{*} u\phi \]
+donde $*$ indica complejo conjugado. Ejemplos f\'isicos de este operador son 
+la membrana el\'astica y el campo electrost\'atico. En cualquiera de estos casos
+vemos que la energ\'ia almacenada por el campo se puede escribir de la forma
+\[I(u)=\int\int_{\Omega} |\nabla u |^2  .\]
+El problema lo plantearemos como : encontrar $u$  que minimiza $I(u)$ con $u|_{\partial \Omega}=f$ .
+Primero veremos que el minimizar la energia es equivalente a encontrar la soluci\'on al problema 
+del laplaciano con valor en la frontera. Sea $v$ tal que $v|_{\partial \Omega}=f$ y sea
+$h=v-u$ entonces $h|_{\partial \Omega}=0$. Ahora
+\[I(v)= I(u+h)=  \int \int_{\Omega} (u_x +h_x)^2+(u_y+h_y)^2  \]
+donde si utilizamos una de las identidades de Green que se sigue del teorema de la divergencia con 
+el campo vectorial $u \nabla v $ y usando el hecho que $\partial_{k}(u\partial_k v)=u \partial _k \partial _k v+  \partial _k u \partial _k v$,
+donde se asume  suma sobre indices repetidos, entonces
+
+\[\int\int_{\Omega} \nabla \cdot (u \nabla v)   =\int\int u \Delta v + \int\int_\Omega \nabla u\cdot\nabla v \]
+donde  aplicandolo a la energ'ia y recordando que $h$ vale cero en la frontera encontramos que
+
+\[I(v)=I(u)+I(h)-2\int\int_{\Omega} h \Delta u  \] 
+donde usamos el hecho que $h$ vale cero en la frontera. Si el laplaciano de $u$ es positivo en un punto $(x_0,y_0)$
+entonces ser\'a positivo en una vecindad de $(x_0,y_0)$.  Tomamos $h<0$ en la vecindad de $(x_0,y_0)$
+fuera de dicha vecindad, entonces se tiene que $I(u+h)\geq I(u)$. Ahora si tomamos
+$h>0$ en la vecindad y cero fuera y tal que $\int\int_{\Omega} |\nabla h|^2 =1$   entonces
+\[I(u+\epsilon h)-I(u)= \epsilon^2-2\epsilon \int\int_{\Omega} h \Delta u <0\]
+si $ \epsilon$ es peque\~no, lo que contradice que $I(u)$ sea m\'inimo. Lo que implica que
+$\Delta u\leq 0$ y por lo tanto $\Delta u=0$ y por lo tanto $u$ m\'inimo de $I(u)$  con $u|_{\partial \Omega} =f$ es necesario
+y suficiente para que $\Delta u=0$ en $\Omega$ y $u|_{\partial \Omega}=f$.
+
+\subsection*{\underline{La soluci\'on es \'unica}.}
+
+Si $u_1$ y $u_2$ son soluciones, $h=u_1-u_2$ entonces
+\[I(u_1)=I(u_2+h)=I(u_2)+I(h)\]
+y como $I(u_1)=I(u_2)$ implica que $I(h)=0$ y por lo tanto $\nabla h=0$ y por lo tanto 
+$h=cte=0$ en $\partial \Omega$.
+
+\subsection*{\underline{Principio de Dirichlet}.}
+Tenemos las siguientes preguntas:
+\begin{enumerate}
+ \item \textquestiondown Existe una soluci\'on de $Delta u=0$ 
+en $\Omega$, talque $u|_{\partial \Omega}=f$ ?.\textquestiondown Que tipo de soluci'on es ?
+Acaso $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ donde la barra indica la cerradura de $\Omega$.
+Si es \'unica  $h=u_1-u_2$ implica $\Delta h=0$ y $h|_{\partial \Omega} =0$ implica el principio
+del m\'aximo que a su vez implica que $h=0$.
+
+\item \textquestiondown Existe un m\'inimo ?
+\item \textquestiondown Como se calcula el m\'inimo $I(u)=\int \int_{\Omega}  |\nabla u|^2 $.
+\item Si existe el m\'inimo $u$ implica acaso que $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ implica 
+acaso que la energ\'ia es finita ?
+\end{enumerate}
+
+Ilustraremos estas preguntas con un ejemplo. 
+
+\subsection*{1)\underline{Ejemplo de Hadamard}.}
+
+Sea $\Omega $ un disco unitario. Consideremos la funci\'on sobre la frontera del 
+disco unitario parametrizada por el \'angulo $\theta\in [0,2\pi]$
+
+\begin{equation}
+\label{hadamard}
+  f(\theta)=\sum_{n=1}^{\infty} \frac{cos(2^{2n} \theta)}{2^n}
+\end{equation}
+
+Como $|f(\theta)|\leq \sum \frac{1}{2^n} =1$ (como puede verse de sumar la serie geom\'etrica con $r=1/2$),
+entonces al serie es absolutamente convergente. Que implica que $f(\theta)$ es continua.
+sea 
+\[u(x,y)=u(\rho,\theta)=\sum_{n=1}^{\infty}  \rho ^{2 ^{2n} } \frac{\cos(2^{2n} \theta)}{2^n}\]
+esta funci\'on cumple que $u|_{\partial \Omega}=f(\theta)$  y $|u(x,y)|\leq 1$ y
+\[u(x,y)= Re \left( \sum_{n=1}^\infty \frac{z^{2^{n}} }{2^n}\right) \]
+es una funci\'on anal\'itica para $|z|<1$  lo que implica que $u$ es arm\'onica. Ahora para pasar a coordenadas
+polares usamos el hecho que 
+\[u_x=u_\rho \cos \theta - u_{\theta} \frac{\sin \theta}{\rho} \]
+\[u_y=u_\rho \sin \theta  + u_{\theta} \frac{\cos \theta}{\rho}.\]
+
+La energ\'ia se calcula como
+\[ I(u)= \int\int_{\Omega} (u_x^1+u_y^2)= \int_0^1 \int_0^{2\pi} \left( u_{\rho} ^{2} + \frac{u_\theta ^2 }{\rho^2} \right) \rho d\rho d\theta
+\]
+Sustituyendo se tendr\'ia que
+
+\[ I(u)= \int_0^1 \int_0^{2\pi} \left( 
+ \sum_{n=1}^{\infty}  2^{2n} \frac{\rho ^{2 ^{2n}-1 } }{2^n} \frac{\cos(2^{2n} \theta)}{2^n} \right)^2+
+\]
+\[
+ \left( 
+ \sum_{n=1}^{\infty} (-) 2^{2n} \frac{\rho ^{2 ^{2n} } }{2^n} \frac{\sin(2^{2n} \theta)}{2^n} \right)^2 \frac{1}{\rho^2} \rho 
+d\rho d\theta.
+\]
+
+Como los dobles productos de senos y cosenos son cero, entonces
+
+\[I(u)=\left.2\pi \sum_{n=1}^{\infty} \frac{2^{2n}}{2^{2n+1} } \rho^{2^{2n+1}}\right|_0^1=\pi \sum_{n=1}^{\infty} \rho^{2n+1}=\infty.\]
+
+Moraleja, tengo que trabajar con una clase m\'as chica de funciones en la frontera. Esta clase ser\'a $f|_{\partial \Omega}$ y
+si definimos los siguientes espacios, entonces
+
+\[ L^2 (S^1)=\left\lbrace g(\theta)=\sum_{n=-\infty}^{\infty} a_n e^{i n \theta } \in Re \Leftrightarrow
+ a_{-n}=\bar{a}_n \right\rbrace
+\]
+con 
+\[\sum |a_n|^2 =\int_{0}^{2\pi} |g(\theta)|^2 d\theta < \infty \]
+
+Podemos definir los espacios de funciones
+\[H^{\alpha}(S^1)=\left\lbrace  g(\theta) = \sum_{-\infty}^{\infty} a_n e^{in\theta}, a_{-n}=\bar{a}_n, \sum_{-\infty}^{\infty} |a_n|^2 n^{2\alpha} <\infty  \right\rbrace.
+\]
+en particular
+\[H^1(S^1)=\left\lbrace g: \sum_{n=-\infty}^{\infty} | a_n|^2 n^2 =\int_0^{2\pi} |g'(\theta)|^2 d\theta \right\rbrace < \infty \] 
+Para ver a que espacio de funciones corresponde la funci\'on  del ejemplo de Hadamard (\ref{hadamard}) vemos que
+\[\sum_{-\infty}^{\infty} |a_n|^2 n^{2\alpha} =\sum_{n=-\infty}^{\infty} \left(\frac{1}{2^n} \right)^2 (2^{2n} )^{2\alpha} =\sum_{n=-\infty}^{\infty} \frac{1}{2^{2n(1-2\alpha)}} \] 
+que ser\'a menor que infinito si $\alpha <1/2$  y la serie converge uniformenente. Si $\alpha\geq 1/2$ tenemos una
+suma infinita y por lo tanto $f(\theta)\in H^{\alpha}(S^{1} )$ con $\alpha<1/2$ .
+Se puede probar que si $f(\theta)\in H^{\alpha}(S^1)$, $\alpha\geq 1/2$ entonces existe
+$u$ tal que $u|_{\rho =1}=f$ y $I(u)<\infty$ . (teorema de traza, adem\'as $f$ es continua)
+
+\subsection*{2)\underline{Tipo de soluciones}.}
+
+Sea $f|_{\partial \Omega}$ tal que exista $u_0 \in C^2(\Omega) \cap  C^0(\bar{\Omega}) $, $u_0|_{\partial \Omega}=1$ y $I(u_0)< \infty$.
+Sea $u$ talque $\nabla^2 u=0$ , $u\in C^2(\Omega)\cap C^0(\bar{\Omega})$, $I(u)<\infty$, $u|_{\partial \Omega}=f$ sea 
+$h=u-u_0$ implica $h \in C^2(\Omega) \cap  C^0(\bar{\Omega})$, $\Delta h=\Delta u-\Delta u_0=-\Delta u_0=g$  es continua. 
+
+Sea 
+\[J(k)=\int\int_\Omega| \nabla k|^2  + 2\int \int_\Omega gk \]
+para $k\in C^2 (\Omega)\cap C^0(\bar{\Omega}) $, $k|_{\partial \Omega}=0$ , $I(k)<\infty$. Si definimos
+
+\[J(h)=I(h)+2 \int\int_\Omega \Delta h h  = I(h) -2\int \int_\Omega | \nabla h |^2 = -I(h)\]
+donde hemos utilizado la identidad de Green. Ahora 
+\[J(h+k)= I(h+k)+2\int \int (h+k)g  \]
+\[J(h+k)= I(h)+I(k) -2 \int \int k \Delta h+2\int \int  (h+k)g \]
+\[J(h+k)=J(h) +I(k)+2 \int\int_\Omega( g-\Delta h )k \]
+cuando $g-\Delta h =0$ da el m\'inimo  de $J(k)$. Alrev\'es,  si $h$ tiene esas propiedades y $J(h)$ es
+m\'inimo entonces $\Delta h=g$ en $\Omega$. Entonces tenemos que si definimos el espacio de funciones
+\[E=\left\lbrace k\in C^2 (\Omega) \cap C^0(\bar{\Omega} ), k|_{\partial \Omega}=0 \right\rbrace, I(k)<\infty\]
+entonces $  \underset{E}{min} J(k)$  es una condici\'on necesaria y suficiente para que $h$ 
+sea soluci\'on de la ecuaci\'on si $\Delta h=g$ y como se vi\'o se tiene que
+
+\begin{enumerate}
+\item $J(h)=-I(h)$
+\item $J(h+k)= J(k)+I(k)$
+\item $J(k)\geq I(k)-2\int\int_\Omega |g||k| \geq I(k) - \epsilon \int\int_\Omega k^2 -\frac{1}{\epsilon} \int\int_\Omega g^2 $
+\end{enumerate}
+donde en $3)$ se utiliz\'o el hecho que si $a,b$ son dos n\'umeros cualesquiera entonces siempre se tiene
+que  $2ab\leq \epsilon a^2 +\frac{1}{\epsilon} b^2 $ (teorema del binomio) . Si $|k|=0$ en $\partial\Omega$ entonces el lema de Poincar\'e
+nos da que 
+\[ \int\int_\Omega k^2 \leq \kappa \int\int_\Omega |\nabla k|^2\]
+donde tomando  $\epsilon=1/\kappa$ tenemos que
+\[J(k)\geq -\kappa \int\int_\Omega g^2 \]
+es decir $J$ es acotado por abajo.
+
+
+\chapter{Espacios de Hilbert}
+
+\section{Espacios vectoriales}
+Sea $E$ con operaciones $+$ y $\times$  por escalar, $f,g \in E$  $\lambda\in \mathbb{R}$(ó $\mathbb{C}$),
+entonces   $\lambda f \in E$.
+Ejemplos:  $\mathbb{R}$, $\mathbb{C}$  $C^0(\bar{\Omega}),C^1(\bar{\Omega}),...$
+\underline{Espacio Normado} : E vectorial con $\Arrowvert \ \Arrowvert:E\rightarrow \mathbb{R}^{+}$
+$\Rightarrow$  $\lVert f-g \rVert$ = distancia de $f$ a $g$\\
+$\lVert f \rVert =0  \Leftrightarrow f = 0 $ \\
+$\lVert \alpha f \rVert =  | \alpha |\lVert f \rVert$ \\ 
+$\lVert  f + g  \rVert =  \lVert f \rVert +\lVert g  \rVert$ \\ 
+Ejemplos: $\mathbb{R}^n$ con la norma $\lVert x \rVert= \underset{j=1,... n}{\max} |x_j|$ , o, $\lVert x\rVert=\left( \sum_j x_j^ 2 \right) ^{1/2}$\\
+$C^0(\bar{\Omega})$ , $\lVert f \rVert = |f|_0 = \underset{x\in \bar{\Omega} }{\max} | f(x)|$\\
+$C^1(\bar{\Omega})$ , $\lVert f \rVert = |f|_1 = \underset{x\in \bar{\Omega} }{\max} | f(x)|$ + 
+$\underset{\lambda}{\sum} \underset{x\in\Omega }{\max} \left| \partial_{\lambda} f \right|$ \\
+$L^2(\Omega)$ con la norma $\lVert f \rVert_2= \left( \int \int_\Omega |f|^2 dx \right)^\frac{1}{2}$\\ 
+$H^1(\Omega)$ con la norma $\lVert f \rVert_1= \left( \int \int_\Omega |f|^2 dx + \underset{\lambda}{\sum}  \left| \partial_{\lambda} f \right| \right)^\frac{1}{2}$\\
+$L^2(\Omega) = \{ f \ \ medible\ \ con \ \ \int \int_\Omega |f|^2 dx< \infty \} $\\  
+
+\underline{Espacio con producto escalar}
+Espacio vectorial con $( \ \ , \ \ )  \in \mathbb{R}$ (ó $\mathbb{C}$). Si $(f,g)=\overline{(g,f)}$   
+entonces $(f,f)\in \mathbb{R}$. \\
+
+$(f_1+f_2,g)=(f_1,g)+(f_2,g)$  \\
+$(f,f)>0$ si $f\neq 0$ entonces se define $\lVert f \rVert = (f,f)^{\frac{1}{2}}$ porque
+de la desigualdad de Cauchy-Schwarz se tiene
+$|(f,g)| \leq \lVert f \rVert \lVert g\rVert$ implica \\
+
+\[\lVert f+g \rVert^2 = (f+g,f+g) =\lVert f\rVert^2 + \lVert g\rVert^2 + (g,f)+(f,g)\]
+\[ \leq \lVert f\rVert^2 + \lVert g\rVert^2 + \lVert f \rVert\lVert g \rVert= \left( \lVert f\rVert + \lVert g\rVert  \right)^2 \]
+
+\underline{Cauchy-Schwarz} \\
+$0\leq (f+\lambda g, f + \lambda g) = \lVert f \rVert^2 +\lambda^2\lVert g \rVert^2 + \bar{\lambda} (f,g)+ \lambda (g,f)= \lVert f \rVert^2+ \lambda^2\lVert g \rVert^2 +2 Re (\lambda(g,f))$
+si $(g,f)= R e^{i \phi} $ tomemos $\lambda= \rho e^{-i\phi}$  entonces\\
+$0\leq \rho^2 \lVert g\rVert +2 \rho | (g,f) | + \lVert f\rVert^2 $
+no tiene raíces implica el discriminante \\
+$ (g,f) |^2 - \lVert f \rVert+ \lambda^2\lVert g \rVert \leq 0$\\
+\underline{ejemplos} \\
+$\mathbb{R}^n$,$\mathbb{C}$ $(x,y)= \sum x_i \bar{y}_i$ \\
+$L^2(\Omega) : (f,g) =\int_{\Omega} f \bar{g} dx$\\
+$H^1(\Omega)$ con producto interno $(f,g)_1 = \int_{\Omega} f\bar{g} + \sum_{i=1}^{n} f_{x_i} \bar{g}_{x_i}$
+
+\section{Sucesión de Cauchy en un espacio normado}
+Sea $E$ con $ \lVert \ \ \rVert$, Una sucesión $\{ u_n\}\in E$ es de Cauchy si dado $\epsilon>0$
+existe $N(\epsilon)$ tal que $\lVert u_n -u_m\rVert \leq \ep $ , $n,m\geq N$ .
+
+$E$ es de Banach si $E$ tiene $(\ ,\ )$ y es completo, $E$ es de Hilbert.
+
+No todo espacio vectorial es completo, pero se puede completar tomando clases de equivalencia de sucesiones
+de Cauchy por ejemplo $C^0[0,1]$    
+
+\end{document}

@@ -1,0 +1,174 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{amsmath}
+\usepackage{ mathrsfs }
+
+
+\begin{document}
+
+\section{Introducci\'on}
+
+Queremos buscar los m\'inimos del siguiente problema:$\mathscr{L}$ es un operador lineal
+$\mathscr{L} u=f$.   Si definimos
+\[A(u,v)=\int\int_{\Omega} \mathscr{L} u v  dx dy \] 
+donde $dx dy$ representar\'a un diferencial de area y en general lo omitiremos.
+$A$ es tal que $A(u,v)\geq \alpha {|| u ||}^2$ si  $u_0$ es m\'inimo de 
+\[A(u,u)-2 (f,u) \]
+donde se define
+\[(f,u)=\int\int_{\Omega} f u .\]
+entonces a $u_0$ se le llama la soluci\'on generalizada de $\mathscr{L} u=f$. El operador $\mathscr{L}$ puede ser 
+por ejemplo la  biarm\'onica $\Delta^2$.
+si
+\[\int\int_{\Omega} \mathscr{L} u\phi =\int \int_{\Omega} f \phi  \]
+para todo $\phi \in C_0^\infty$, entonces definimos el operador autoadjunto como 
+\[\int\int_{\Omega} \mathscr{L}^{*} u\phi \]
+donde $*$ indica complejo conjugado. Ejemplos f\'isicos de este operador son 
+la membrana el\'astica y el campo electrost\'atico. En cualquiera de estos casos
+vemos que la energ\'ia almacenada por el campo se puede escribir de la forma
+\[I(u)=\int\int_{\Omega} |\nabla u |^2  .\]
+El problema lo plantearemos como : encontrar $u$  que minimiza $I(u)$ con $u|_{\partial \Omega}=f$ .
+Primero veremos que el minimizar la energia es equivalente a encontrar la soluci\'on al problema 
+del laplaciano con valor en la frontera. Sea $v$ tal que $v|_{\partial \Omega}=f$ y sea
+$h=v-u$ entonces $h|_{\partial \Omega}=0$. Ahora
+\[I(v)= I(u+h)=  \int \int_{\Omega} (u_x +h_x)^2+(u_y+h_y)^2  \]
+donde si utilizamos una de las identidades de Green que se sigue del teorema de la divergencia con 
+el campo vectorial $u \nabla v $ y usando el hecho que $\partial_{k}(u\partial_k v)=u \partial _k \partial _k v+  \partial _k u \partial _k v$,
+donde se asume  suma sobre indices repetidos, entonces
+
+\[\int\int_{\Omega} \nabla \cdot (u \nabla v)   =\int\int u \Delta v + \int\int_\Omega \nabla u\cdot\nabla v \]
+donde  aplicandolo a la energ'ia y recordando que $h$ vale cero en la frontera encontramos que
+
+\[I(v)=I(u)+I(h)-2\int\int_{\Omega} h \Delta u  \] 
+donde usamos el hecho que $h$ vale cero en la frontera. Si el laplaciano de $u$ es positivo en un punto $(x_0,y_0)$
+entonces ser\'a positivo en una vecindad de $(x_0,y_0)$.  Tomamos $h<0$ en la vecindad de $(x_0,y_0)$
+fuera de dicha vecindad, entonces se tiene que $I(u+h)\geq I(u)$. Ahora si tomamos
+$h>0$ en la vecindad y cero fuera y tal que $\int\int_{\Omega} |\nabla h|^2 =1$   entonces
+\[I(u+\epsilon h)-I(u)= \epsilon^2-2\epsilon \int\int_{\Omega} h \Delta u <0\]
+si $ \epsilon$ es peque\~no, lo que contradice que $I(u)$ sea m\'inimo. Lo que implica que
+$\Delta u\leq 0$ y por lo tanto $\Delta u=0$ y por lo tanto $u$ m\'inimo de $I(u)$  con $u|_{\partial \Omega} =f$ es necesario
+y suficiente para que $\Delta u=0$ en $\Omega$ y $u|_{\partial \Omega}=f$.
+
+\subsection*{\underline{La soluci\'on es \'unica}.}
+
+Si $u_1$ y $u_2$ son soluciones, $h=u_1-u_2$ entonces
+\[I(u_1)=I(u_2+h)=I(u_2)+I(h)\]
+y como $I(u_1)=I(u_2)$ implica que $I(h)=0$ y por lo tanto $\nabla h=0$ y por lo tanto 
+$h=cte=0$ en $\partial \Omega$.
+
+\subsection*{\underline{Principio de Dirichlet}.}
+Tenemos las siguientes preguntas:
+\begin{enumerate}
+ \item \textquestiondown Existe una soluci\'on de $Delta u=0$ 
+en $\Omega$, talque $u|_{\partial \Omega}=f$ ?.\textquestiondown Que tipo de soluci'on es ?
+Acaso $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ donde la barra indica la cerradura de $\Omega$.
+Si es \'unica  $h=u_1-u_2$ implica $\Delta h=0$ y $h|_{\partial \Omega} =0$ implica el principio
+del m\'aximo que a su vez implica que $h=0$.
+
+\item \textquestiondown Existe un m\'inimo ?
+\item \textquestiondown Como se calcula el m\'inimo $I(u)=\int \int_{\Omega}  |\nabla u|^2 $.
+\item Si existe el m\'inimo $u$ implica acaso que $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ implica 
+acaso que la energ\'ia es finita ?
+\end{enumerate}
+
+Ilustraremos estas preguntas con un ejemplo. 
+
+\subsection*{1)\underline{Ejemplo de Hadamard}.}
+
+Sea $\Omega $ un disco unitario. Consideremos la funci\'on sobre la frontera del 
+disco unitario parametrizada por el \'angulo $\theta\in [0,2\pi]$
+
+\begin{equation}
+\label{hadamard}
+  f(\theta)=\sum_{n=1}^{\infty} \frac{cos(2^{2n} \theta)}{2^n}
+\end{equation}
+
+Como $|f(\theta)|\leq \sum \frac{1}{2^n} =1$ (como puede verse de sumar la serie geom\'etrica con $r=1/2$),
+entonces al serie es absolutamente convergente. Que implica que $f(\theta)$ es continua.
+sea 
+\[u(x,y)=u(\rho,\theta)=\sum_{n=1}^{\infty}  \rho ^{2 ^{2n} } \frac{\cos(2^{2n} \theta)}{2^n}\]
+esta funci\'on cumple que $u|_{\partial \Omega}=f(\theta)$  y $|u(x,y)|\leq 1$ y
+\[u(x,y)= Re \left( \sum_{n=1}^\infty \frac{z^{2^{n}} }{2^n}\right) \]
+es una funci\'on anal\'itica para $|z|<1$  lo que implica que $u$ es arm\'onica. Ahora para pasar a coordenadas
+polares usamos el hecho que 
+\[u_x=u_\rho \cos \theta - u_{\theta} \frac{\sin \theta}{\rho} \]
+\[u_y=u_\rho \sin \theta  + u_{\theta} \frac{\cos \theta}{\rho}.\]
+
+La energ\'ia se calcula como
+\[ I(u)= \int\int_{\Omega} (u_x^1+u_y^2)= \int_0^1 \int_0^{2\pi} \left( u_{\rho} ^{2} + \frac{u_\theta ^2 }{\rho^2} \right) \rho d\rho d\theta
+\]
+Sustituyendo se tendr\'ia que
+
+\[ I(u)= \int_0^1 \int_0^{2\pi} \left( 
+ \sum_{n=1}^{\infty}  2^{2n} \frac{\rho ^{2 ^{2n}-1 } }{2^n} \frac{\cos(2^{2n} \theta)}{2^n} \right)^2+
+\]
+\[
+ \left( 
+ \sum_{n=1}^{\infty} (-) 2^{2n} \frac{\rho ^{2 ^{2n} } }{2^n} \frac{\sin(2^{2n} \theta)}{2^n} \right)^2 \frac{1}{\rho^2} \rho 
+d\rho d\theta.
+\]
+
+Como los dobles productos de senos y cosenos son cero, entonces
+
+\[I(u)=\left.2\pi \sum_{n=1}^{\infty} \frac{2^{2n}}{2^{2n+1} } \rho^{2^{2n+1}}\right|_0^1=\pi \sum_{n=1}^{\infty} \rho^{2n+1}=\infty.\]
+
+Moraleja, tengo que trabajar con una clase m\'as chica de funciones en la frontera. Esta clase ser\'a $f|_{\partial \Omega}$ y
+si definimos los siguientes espacios, entonces
+
+\[ L^2 (S^1)=\left\lbrace g(\theta)=\sum_{n=-\infty}^{\infty} a_n e^{i n \theta } \in Re \Leftrightarrow
+ a_{-n}=\bar{a}_n \right\rbrace
+\]
+con 
+\[\sum |a_n|^2 =\int_{0}^{2\pi} |g(\theta)|^2 d\theta < \infty \]
+
+Podemos definir los espacios de funciones
+\[H^{\alpha}(S^1)=\left\lbrace  g(\theta) = \sum_{-\infty}^{\infty} a_n e^{in\theta}, a_{-n}=\bar{a}_n, \sum_{-\infty}^{\infty} |a_n|^2 n^{2\alpha} <\infty  \right\rbrace.
+\]
+en particular
+\[H^1(S^1)=\left\lbrace g: \sum_{n=-\infty}^{\infty} | a_n|^2 n^2 =\int_0^{2\pi} |g'(\theta)|^2 d\theta \right\rbrace < \infty \] 
+Para ver a que espacio de funciones corresponde la funci\'on  del ejemplo de Hadamard (\ref{hadamard}) vemos que
+\[\sum_{-\infty}^{\infty} |a_n|^2 n^{2\alpha} =\sum_{n=-\infty}^{\infty} \left(\frac{1}{2^n} \right)^2 (2^{2n} )^{2\alpha} =\sum_{n=-\infty}^{\infty} \frac{1}{2^{2n(1-2\alpha)}} \] 
+que ser\'a menor que infinito si $\alpha <1/2$  y la serie converge uniformenente. Si $\alpha\geq 1/2$ tenemos una
+suma infinita y por lo tanto $f(\theta)\in H^{\alpha}(S^{1} )$ con $\alpha<1/2$ .
+Se puede probar que si $f(\theta)\in H^{\alpha}(S^1)$, $\alpha\geq 1/2$ entonces existe
+$u$ tal que $u|_{\rho =1}=f$ y $I(u)<\infty$ . (teorema de traza, adem\'as $f$ es continua)
+
+\subsection*{2)\underline{Tipo de soluciones}.}
+
+Sea $f|_{\partial \Omega}$ tal que exista $u_0 \in C^2(\Omega) \cap  C^0(\bar{\Omega}) $, $u_0|_{\partial \Omega}=1$ y $I(u_0)< \infty$.
+Sea $u$ talque $\nabla^2 u=0$ , $u\in C^2(\Omega)\cap C^0(\bar{\Omega})$, $I(u)<\infty$, $u|_{\partial \Omega}=f$ sea 
+$h=u-u_0$ implica $h \in C^2(\Omega) \cap  C^0(\bar{\Omega})$, $\Delta h=\Delta u-\Delta u_0=-\Delta u_0=g$  es continua. 
+
+Sea 
+\[J(k)=\int\int_\Omega| \nabla k|^2  + 2\int \int_\Omega gk \]
+para $k\in C^2 (\Omega)\cap C^0(\bar{\Omega}) $, $k|_{\partial \Omega}=0$ , $I(k)<\infty$. Si definimos
+
+\[J(h)=I(h)+2 \int\int_\Omega \Delta h h  = I(h) -2\int \int_\Omega | \nabla h |^2 = -I(h)\]
+donde hemos utilizado la identidad de Green. Ahora 
+\[J(h+k)= I(h+k)+2\int \int (h+k)g  \]
+\[J(h+k)= I(h)+I(k) -2 \int \int k \Delta h+2\int \int  (h+k)g \]
+\[J(h+k)=J(h) +I(k)+2 \int\int_\Omega( g-\Delta h )k \]
+cuando $g-\Delta h =0$ da el m\'inimo  de $J(k)$. Alrev\'es,  si $h$ tiene esas propiedades y $J(h)$ es
+m\'inimo entonces $\Delta h=g$ en $\Omega$. Entonces tenemos que si definimos el espacio de funciones
+\[E=\left\lbrace k\in C^2 (\Omega) \cap C^0(\bar{\Omega} ), k|_{\partial \Omega}=0 \right\rbrace, I(k)<\infty\]
+entonces $  \underset{E}{min} J(k)$  es una condici\'on necesaria y suficiente para que $h$ 
+sea soluci\'on de la ecuaci\'on si $\Delta h=g$ y como se vi\'o se tiene que
+
+\begin{enumerate}
+\item $J(h)=-I(h)$
+\item $J(h+k)= J(k)+I(k)$
+\item $J(k)\geq I(k)-2\int\int_\Omega |g||k| \geq I(k) - \epsilon \int k^2 -\frac{1}{\epsilon} \int\int_\Omega g^2 $
+\end{enumerate}
+donde en $3)$ se utiliz\'o el hecho que si $a,b$ son dos n\'umeros cualesquiera entonces siempre se tiene
+que  $2ab\leq \epsilon a^2 +\frac{1}{\epsilon} b^2 $ (teorema del binomio) . Si $|k|=0$ en $\partial\Omega$ entonces el lema de Poincar\'e
+nos da que 
+\[ \int\int_\Omega k^2 \leq \kappa \int\int_\Omega |\nabla k|^2\]
+donde tomando  $\epsilon=1/\kappa$ tenemos que
+\[J(k)\geq -\kappa \int\int_\Omega g^2 \]
+es decir $J$ es acotado por abajo.
+
+
+
+
+
+
+\end{document}
