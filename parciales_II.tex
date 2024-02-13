@@ -19,6 +19,8 @@
 
 
 
+
+
 \usepackage{lmodern} %Type1-font for non-english texts and characters
 \usepackage{amsthm}
 \usepackage{amsfonts}
@@ -32,56 +34,64 @@
 \usepackage{gensymb}
 \usepackage{subcaption}
 
+\usepackage{enumitem}
+
+
 \def \ep{\epsilon}
 
 \newtheorem{lemma}{Lema}
 \newtheorem{ejemplo}{Ejemplo}
-\newtheorem{definition}{Definción}
+\newtheorem{propiedades}{Propiedades}
+\newtheorem{definition}{Definición}
 \newtheorem{theorem}{Teorema}
+
+\newcommand{\rotin}{\mathbin{\rotatebox[origin=c]{270}{$\in$}}}
+\newcommand{\rotnotin}{\mathbin{\rotatebox[origin=c]{270}{$\notin$}}}
+
 
 \begin{document}
 
 
 \section{Introducci\'on}
 Queremos buscar los m\'inimos del siguiente problema:$\mathscr{L}$ es un operador lineal
-$\mathscr{L} u=f$.   Si definimos
-\[A(u,v)=\iint_{\Omega} \mathscr{L} u v  dx dy \] 
-donde $dx dy$ representar\'a un diferencial de area y en general lo omitiremos.
-$A$ es tal que $A(u,v)\geq \alpha {|| u ||}^2$ si  $u_0$ es m\'inimo de 
-\[A(u,u)-2 (f,u) \]
-donde se define
-\[(f,u)=\iint_{\Omega} f u .\]
-entonces a $u_0$ se le llama la soluci\'on generalizada de $\mathscr{L} u=f$. El operador $\mathscr{L}$ puede ser 
+$\mathscr{L} U=f$.   Si definimos
+\[A(U,v)=\iint_{\Omega} \mathscr{L} U v dx \] 
+$A$ es tal que $A(U,v)\geq \alpha {|| U ||}^2$.  $U_0$ es m\'inimo de 
+\[A(U,U)-2 (f,U) \]
+donde 
+\[(f,U)=\iint_{\Omega} f U dx.\]
+entonces a $U_0$ se le llama la soluci\'on generalizada de $\mathscr{L} u=f$. El operador $\mathscr{L}$ puede ser 
 por ejemplo la  biarm\'onica $\Delta^2$.
 si
-\[\iint_{\Omega} \mathscr{L} u\phi =\iint_{\Omega} f \phi  \]
+\[\iint_{\Omega} \mathscr{L} U\varphi dx =\iint_{\Omega} f \phi dx  \]
 para todo $\phi \in C_0^\infty$, entonces definimos el operador autoadjunto como 
-\[\iint_{\Omega} \mathscr{L}^{*} u\phi \]
-donde $*$ indica complejo conjugado. Ejemplos f\'isicos de este operador son 
+\[\iint_{\Omega} U \mathscr{L}^{*} \phi \]
+Ejemplos f\'isicos de este operador son 
 la membrana el\'astica y el campo electrost\'atico. En cualquiera de estos casos
 vemos que la energ\'ia almacenada por el campo se puede escribir de la forma
-\[I(u)=\iint_{\Omega} |\nabla u |^2  .\]
-El problema lo plantearemos como : encontrar $u$  que minimiza $I(u)$ con $u|_{\partial \Omega}=f$ .
+\[I(U)=\iint_{\Omega} |\nabla U |^2 dx \]
+El problema lo plantearemos como : encontrar $u$  que minimiza $I(U)$ con $U|_{\partial \Omega}=f$ .
 Primero veremos que el minimizar la energia es equivalente a encontrar la soluci\'on al problema 
 del laplaciano con valor en la frontera. Sea $v$ tal que $v|_{\partial \Omega}=f$ y sea
-$h=v-u$ entonces $h|_{\partial \Omega}=0$. Ahora
-\[I(v)= I(u+h)=  \iint_{\Omega} (u_x +h_x)^2+(u_y+h_y)^2  \]
-donde si utilizamos una de las identidades de Green que se sigue del teorema de la divergencia con 
-el campo vectorial $u \nabla v $ y usando el hecho que $\partial_{k}(u\partial_k v)=u \partial _k \partial _k v+  \partial _k u \partial _k v$,
-donde se asume  suma sobre indices repetidos, entonces
+$h=v-U$ entonces $h|_{\partial \Omega}=0$. Ahora
+\[I(v)= I(U+h)=  \iint_{\Omega} (U_x +h_x)^2+(U_y+h_y)^2  \]
+el teorema de Green 
+\[
+\iint_\Omega U\Delta v = - \iint_\Omega \nabla U \cdot \nabla v + \int_{\partial \Omega} U \frac{\partial v}{\partial n}
+\]
+entonces
 
-\[\iint_{\Omega} \nabla \cdot (u \nabla v)   =\iint u \Delta v + \iint_\Omega \nabla u\cdot\nabla v \]
-donde  aplicandolo a la energ'ia y recordando que $h$ vale cero en la frontera encontramos que
+\[I(v)=I(U)+I(h)-2\iint_{\Omega} h \Delta U  \] 
+donde usamos el hecho que $h$ vale cero en la frontera. Si el laplaciano de $U$ es positivo en un punto $(x_0,y_0)$
+entonces ser\'a positivo en una vecindad de $(x_0,y_0)$.  Tomamos $h<0$ fuera de una vecindad de $(x_0,y_0)$, entonces se tiene que 
+\[I(U+h)\geq I(U)\].
 
-\[I(v)=I(u)+I(h)-2\iint_{\Omega} h \Delta u  \] 
-donde usamos el hecho que $h$ vale cero en la frontera. Si el laplaciano de $u$ es positivo en un punto $(x_0,y_0)$
-entonces ser\'a positivo en una vecindad de $(x_0,y_0)$.  Tomamos $h<0$ en la vecindad de $(x_0,y_0)$
-fuera de dicha vecindad, entonces se tiene que $I(u+h)\geq I(u)$. Ahora si tomamos
+Ahora si tomamos
 $h>0$ en la vecindad y cero fuera y tal que $\iint_{\Omega} |\nabla h|^2 =1$   entonces
-\[I(u+\epsilon h)-I(u)= \epsilon^2-2\epsilon \iint_{\Omega} h \Delta u <0\]
-si $ \epsilon$ es peque\~no, lo que contradice que $I(u)$ sea m\'inimo. Lo que implica que
-$\Delta u\leq 0$ y por lo tanto $\Delta u=0$ y por lo tanto $u$ m\'inimo de $I(u)$  con $u|_{\partial \Omega} =f$ es necesario
-y suficiente para que $\Delta u=0$ en $\Omega$ y $u|_{\partial \Omega}=f$.
+\[I(U+\epsilon h)-I(U)= \epsilon^2-2\epsilon \iint_{\Omega} h \Delta U <0\]
+si $ \epsilon$ es peque\~no, lo que contradice que $I(U)$ sea m\'inimo. Lo que implica que
+$\Delta U\leq 0$ y por lo tanto $\Delta U=0$ y por lo tanto $u$ m\'inimo de $I(U)$  con $U|_{\partial \Omega} =f$ es necesario
+y suficiente para que $\Delta U=0$ en $\Omega$ y $U|_{\partial \Omega}=f$.
 
 \subsection*{\underline{La soluci\'on es \'unica}.}
 
@@ -93,15 +103,15 @@ $h=cte=0$ en $\partial \Omega$.
 \subsection*{\underline{Principio de Dirichlet}.}
 Tenemos las siguientes preguntas:
 \begin{enumerate}
- \item \textquestiondown Existe una soluci\'on de $\Delta u=0$ 
-en $\Omega$, talque $u|_{\partial \Omega}=f$ ?.\textquestiondown Que tipo de solución es ?
-Acaso $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ donde la barra indica la cerradura de $\Omega$.
+ \item \textquestiondown Existe una soluci\'on de $\Delta U=0$ 
+en $\Omega$, talque $U|_{\partial \Omega}=f$ ?.\textquestiondown Que tipo de solución es ?
+Acaso $U\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ donde la barra indica la cerradura de $\Omega$.
 Si es \'unica  $h=u_1-u_2$ implica $\Delta h=0$ y $h|_{\partial \Omega} =0$ implica el principio
 del m\'aximo que a su vez implica que $h=0$.
 
 \item \textquestiondown Existe un m\'inimo ?
-\item \textquestiondown Como se calcula el m\'inimo $I(u)=\iint_{\Omega}  |\nabla u|^2 $.
-\item Si existe el m\'inimo $u$ implica acaso que $u\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ implica 
+\item \textquestiondown Como se calcula el m\'inimo $I(U)=\iint_{\Omega}  |\nabla U|^2 $.
+\item Si existe el m\'inimo $u$ implica acaso que $U\in C^2 (\Omega) \cap C^0 (\bar{\Omega})$ implica 
 acaso que la energ\'ia es finita ?
 \end{enumerate}
 
@@ -514,7 +524,7 @@ Es un sistema lineal de ecuaciones homogeneo, que para que tenga solución disti
         \end{array}
         \right)
         \]
-    Se puede ver que su determinate es cero    
+    Se puede ver que su determinate no es cero    
     \item $L^2[0,\pi]$  $1,\cos x, \cos 2 x, ..., \cos n x$ son linealmente independientes. $D$ es diagonal,
     tambien $1,\sin x, \sin 2 x,..., \sin n x $ 
     \item $L^2 [0,2\pi]$  $1,\cos x, \sin x, \cos 2x, \sin 2x,..., \cos nx, \sin nx $ son linealmente independientes $D$ diagonal
@@ -551,12 +561,7 @@ $\Rightarrow$
 \begin{enumerate}
     \item $\Vert U-U_n \Vert \leq \Vert U - \sum\limits_1^n \lambda_j \varphi_j \Vert \;\; \forall \;\; \lambda_1,\ldots, \lambda_n$ con igualdad solo si $\lambda_j= \alpha_j$
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{Fig_2.png}
-    \caption{Proyección ortogonal de U sobre $E_n= < \varphi_1, \ldots, \varphi_n >$ }
-    \label{fig:2}
-\end{figure}
+
 
 \item Desigualdad de Bessel  
 \[
@@ -564,9 +569,316 @@ $\Rightarrow$
 \]
 y si $E$ es de Hilbert $\Rightarrow$  $\sum\limits_1^n \alpha_j \varphi_j$ converge en $E$ 
 
+\item Si $\sum\limits_1^n \lambda_j^{(n)} \varphi_j  \overset{n\rightarrow \infty}{\longrightarrow }  U \Rightarrow  \lambda_j^{(n)}\overset{n\rightarrow \infty}{\longrightarrow }  \alpha_j , \sum\limits_1^n \alpha_j \varphi_j \rightarrow U  $
+
+\[
+\sum_1^{n} |\alpha_j|^2 =  \Vert U \Vert^2  \; \; \text{identidad de parseval}
+\]
 \end{enumerate}
 
 \end{theorem}
 
+\begin{proof}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Fig_2.png}
+    \caption{Proyección ortogonal de U sobre $E_n= < \varphi_1, \ldots, \varphi_n >$ }
+    \label{fig:2}
+\end{figure}
+
+    1)  sea $v_n = \sum\limits_1^n \lambda_j\varphi $ y $(\varphi_j,U) = \bar{\alpha}_j$
+    entonces 
+    
+    \begin{align*}
+    \vert U - v_n\Vert^2  &= ( U - \sum\limits_1^n \lambda_j\varphi_j , U - \sum\limits_1^n\lambda_j \varphi_j) \\    
+    &= \Vert U \Vert^2 - \sum (\lambda_j \bar{\alpha}_j +\bar{\lambda}_j \alpha_j) +\sum|\lambda_j |^2\\
+    &= \Vert U\Vert ^2  + (\sum (\lambda_j-\alpha_j) \varphi_j, \sum (\lambda_j-\alpha_j ) \varphi_j) - \sum |\alpha_j|^2
+    \end{align*}
+
+    tambien 
+    \[
+    \Vert U- U_n \Vert  \underset{\lambda_j = \alpha_j}{ =}  \Vert U\Vert^2 -\sum |\alpha_j|^2 
+    \]
+    \[
+    \Vert U -v_n \Vert^2 \underset{\text{pitagoras}}{=} \Vert U - U_n\Vert^2 + \Vert U_n -v_n\Vert ^2  
+    \]
+    \[
+    \Rightarrow \Vert U -U_n\Vert \leq \Vert U -v_n \Vert \text{con igualdad solo si  } v_n=U_n
+    \]
+    
+\end{proof}
+
+Lo volvemos a enunciar
+
+\begin{theorem}
+\label{Theorem:1}
+Sea $H$ con  producto interno $(,)$, $\varphi_1,\varphi_2\ldots$  ortonormales  
+\[
+U\rightarrow U_n = \sum\limits_1^n (U,\varphi_j)\varphi_j
+\]
+
+\begin{enumerate}
+    \item $\Vert U-U_n\Vert \leq \Vert U- v_n\Vert  \forall v_n = \sum\limits_1^n \lambda_j\varphi_j$
+    \item $\sum\limits_1^n |(U,\varphi_j)|^2 \leq \Vert U\Vert ^2  \text{(Bessel)}$
+    
+    Si $H$ es de Hilbert $\Rightarrow \sum\limits_1^n (U,\varphi) \varphi_j $ converge a $v$
+    \item si $v_n \rightarrow U  \Rightarrow \lambda_j^{(n)} \rightarrow (U,\varphi_j)$ , 
+    
+    $\sum\limits_1^n |(U,\varphi_j)|^2 = \Vert U \Vert^2$,
+    
+    $\sum\limits_{1}^{\infty} (U,\varphi_j) \varphi_j = U$
+    
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+\begin{enumerate}[label=\alph*]
+
+\item) $\{f_1,f_2,\ldots   \}\in E$ es completo si todo $U\in E$ es aproximado por combinaciones finitas
+$\Vert U-\sum\limits_1^n \lambda_j f_j \Vert \leq \epsilon$
+\item) $E$ con $(,)$  y $\{ f_1,f_2,\ldots\}$ es cerrado si cuando $(U,f_j)=0 \forall i \Rightarrow U=0$ 
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    $H$ es de Hilbert cuando $\varphi_1,\varphi_2,\ldots$  son ortonormales 
+    
+    (1) $ \{ \varphi_1, \varphi_2,\ldots\}$ completa  $\Leftrightarrow (2) \{ \varphi_1,\varphi_2,\ldots \}$ cerrada    $\Leftrightarrow$(3) $H$  es separable  $\Leftrightarrow$ todo $U\in H $ se escribe como $U= \sum\limits_1^\infty (U_j,\varphi_j) \varphi_j$
+
+    (4) $\{ \varphi_j \}$ son base de $H$ En general (si $\varphi_j$ no son $\perp$ ) completo $\Rightarrow$ cerrado
+\end{theorem}
+
+\begin{proof}
+    (1) $\Rightarrow$ (4).  (3) del teorema anterior (\ref{Theorem:1}). (4) $\Rightarrow$ (1)  $ U= \sum\limits_1^\infty (U,\varphi_j)  \varphi_j =  \lim U_n   \underset{\lambda_j = (U,\varphi_j)}
+    {U_n \rightarrow U }$
+
+    (1) $\Rightarrow$ (2)  si $ (U,\varphi_j)=0 \forall j  \overset{(4)}{\Rightarrow} U=0$  
+    
+    (2) $\Rightarrow$ (1) Sea $w=U - \sum\limits_1^\infty (U,\varphi_j)\varphi_j$ $v de (2) anterior$
+    $(w,\varphi_k)= (U,\varphi_k) -(U,\varphi_k) =0  \Rightarrow w= 0 \Rightarrow (4)\cong (1) $
+
+    (1) $\Rightarrow$ (3) Dado $\epsilon \Rightarrow \Vert U - \sum\limits_1^n \lambda_j \varphi_j \Vert \leq \frac{\epsilon}{2} $
+
+    $\sum\limits_1^n| \lambda_j - P_j| < \frac{\epsilon}{2}$ $P_j \in \mathbb{Q} + i \mathbb{Q} \Rightarrow \Vert U - \sum\limits_1^n P_j \varphi_j \Vert \leq \epsilon$
+
+    (3) $\Rightarrow$ (4) Existe $\{ f_1,f_2,\ldots\}$ denso en $H$.
+
+    Sea $\{g_1,g_2, \ldots\}\in \{ f_1,f_2,\ldots\}$ linealmente independientes
+
+    $f_k = \sum\limits_1^k \lambda_j g_j$
+
+    Aquí usamos la construcción de \underline{Gramm-Schmith}, sea $\varphi_1= \frac{g_1}{\Vert g_1\Vert}$
+
+    $\tilde{\varphi}_2 = g_2 - (g_2,\varphi_1) \varphi_1 \perp \varphi_1 \;\; \tilde{\varphi}_2\neq 0$  
+
+    $\varphi_2=\frac{\tilde{\varphi}_2}{\Vert \tilde{\varphi}_2\Vert}$
+
+    $\tilde{\varphi}_3= g_3 -(g_3,\varphi_1) \varphi_1 - (g_3,\varphi_2)\varphi_2 \perp \varphi_1,\varphi_2 \neq 0$
+
+    si $U\in H \Rightarrow \Vert U - f_n \Vert \leq \ep $  donde  $ \Vert U - f_n \Vert = \Vert U - \sum\limits_1^n \lambda_j g_j \Vert = \Vert U -\sum\limits_1^n \tilde{\lambda_j} \varphi_j \Vert$ 
+\end{proof}
+
+\begin{enumerate}
+    
+    \item $L^2_{\mathbb{C}} [ 0 , 2\pi] \;\;  \varphi_n=\frac{e^{inx}}{\sqrt{2\pi}} \;\; n=-\infty,\ldots,\infty$
+    \item  $L^2_{\mathbb{R}} [ 0 , 2\pi] \;\;
+ \varphi_n  = \left\{\begin{aligned}
+       \frac{1}{ \sqrt{2\pi} }   &\;\;\;&  n= 0 \\
+        \frac{1}{\sqrt{\pi}} \cos n x , \frac{1}{\sqrt{\pi}} \sin n x &\;\;\;&  n>0\\
+       \end{aligned}
+ \right. $
+ \item $L^2[0,\pi]$
+  $\varphi_n  = \left\{\begin{aligned}
+       \frac{1}{ \sqrt{\pi} }   &\;\;\;&  n= 0 \\
+        \frac{1}{\sqrt{\pi/2}} \cos n x &\;\;\;&  n>0\\
+       \end{aligned}
+ \right\}  \text{ó} \;\; \varphi_n \left\{ \frac{\sin nx}{\sqrt{\pi/2}} \right\}_{n>0} $
+ en particular
+
+ \[1=\sum\limits_0^\infty \left( 1,\frac{\sin n x}{ \sqrt{\pi/2}} \right) \frac{\sin nx }{\sqrt{\pi/2}} = \frac{4}{\pi} \sum_0^\infty \frac{\sin (2n+1)x}{2n+1}\]
+
+  \text{porque}
+  $\left( 1,\frac{\sin n x}{ \sqrt{\pi/2}} \right) = \int_0^\pi \frac{\sin n x}{ \sqrt{\pi/2}}  dx = \left.-\frac{1}{ \sqrt{\pi/2}} \frac{\cos nx}{n}\right|_0^\pi$
+
+  \item $L^2 [a,b]$  $\frac{d^k}{dt^k} \left[ (t-a)^k (t-b)^k\right]$ polinomios de Laguerre 
+  \item $L^2(\mathbb{R} )$ \text{Hermite} $\varphi_k =\frac{(-1)^k}{ 2^k k! \sqrt{2\pi}}  e^{\frac{t^2}{2} } \frac{d^k}{ dt^k} e^{-t^2}$   
+  \item $L^2(\mathbb{R}^+ )$ Laguerre  $\varphi_k = \frac{e^{t/2}}{ k!} \frac{d^k }{dt^k} (t^k e^{-t})$
+ \end{enumerate}
+
+
+ \begin{definition}
+\begin{enumerate}[label=\alph*]
+
+\item) Complemento ortogonal y proyecciones. Sea $H$ de Hilbert, $M \subset H$ espacio lineal $\Rightarrow \bar{M}$ es lineal
+y cerrado $\Rightarrow \bar{M} $ es de Hilbert.
+
+\underline{Def:} $M^\perp = \{ U\in H \text{con} (U,v) = 0 \forall v\in M\}$
+$M^\perp$ es lineal y cerrado, i.e.  $U_n\rightarrow U \text{y}$ donde cada $(U_n,v)=0 \forall v\in M$,
+entonces
+$|(U-U_n,v) |\leq \Vert U-U_n\Vert \Vert v\Vert \rightarrow 0$
+
+\end{enumerate}
+\end{definition}
+
+\begin{propiedades}
+\begin{enumerate}
+    \item ) $M\subset N \Rightarrow N^\perp \subset M^\perp$  
+    si $U\in N^\perp  \Leftrightarrow  (U,v) =0 \forall v\in N\supset M \Rightarrow U\in M^\perp $
+    \item  $\bar{M}^\perp = M^\perp $   $M\subset \bar{M}  \overset{(1)}{\Rightarrow } \bar{M}^\perp \subset M^\perp $
+    
+    si $v\in M^\perp \Rightarrow (U,v)  = 0 \forall  v \in M$
+
+    si $v\in \bar{M} \Rightarrow  v= lim v_n  \; \; v_n\in M$ 
+
+    $(U, \underset{ \underset{v}{\downarrow}}{v_n})= 0  \Rightarrow (U,v)=0,  \Rightarrow U \in \bar{M}^\perp $
+
+    \item Descomposición ortogonal. $M$ lineal, $U\in H \Rightarrow$ existe único $v\in \bar{M}$ con $U-v\in M $ y $\Vert U -v \Vert =\underset{z\in M}{inf} \Vert U-z \Vert \Rightarrow  U = \underset{\underset{M }{\rotin}}{v} + \underset{\underset{M^\perp }{\rotin}}{\underbrace{U -v}}$ 
+
+    \[H= \bar{M} \oplus  M^{\perp}\]
+
+    \begin{proof}
+        Sea $d=\underset{z\in \bar{M}}{Inf}\Vert U-z\Vert$, sean $z_n\in \bar{M}$ con $\Vert U-z_n\Vert = d_n \rightarrow d$
+
+        $\Vert z_n-z_m\Vert^2 = 2 \Vert U-z_n\Vert^2 + 2 \Vert U - z_m\Vert^2 -4 \Vert U-\frac{z_n + z_m}{2}\Vert^2$
+        \text{Es la identidad del Rombo}
+
+        $a,b\in H$ con $(,)$
+
+        $\Vert a+b\Vert^2 + \Vert a - b \Vert^2 = 2\Vert a \Vert^2 + 2 \Vert b \Vert^2 $
+
+        con $a= U-z_n$, $ b= U- z_m$, $\frac{z_n + z_m }{2} \in \bar{M} \Rightarrow \Vert U - \frac{z_n+z_m}{2} \Vert \geq d \;\; \text{cuando }  n,m \rightarrow \infty \Rightarrow \Vert z_n-z_m \Vert^2 \leq 2 d_n + 2 d_m - 4 d^2 \rightarrow 0  \Rightarrow \{z_n\} $ es de Cauchy $\overset{\bar{M}}{\rightarrow} v $ con $\Vert U-v \Vert = \lim\limits_{n\rightarrow \infty } d_n = d$
+
+        \underline{v es único} si $\Vert U-v_1\Vert = \Vert U-v_2\Vert = d$
+        y como
+        $\Vert v_1-v_2 \Vert^2 = 2 \Vert U- v_1\Vert^2 + 2 \Vert U - v_2\Vert^2 -4\Vert U- \frac{v_1+v_2}{2}\Vert^2 \leq 2 d^2 + 2 d^2 -4d^2 =0 $
+
+        $\Rightarrow v_1 = v_2$
+
+        
+        Ahora probar que $U-v\perp  M^\perp $. Sea $w\in \bar{M}$, $U-v -\epsilon w $ donde $v+\epsilon w \in \bar{M}$
+
+        \[d^2 \leq \Vert U-v-\epsilon w\Vert^2 = \Vert U-v\Vert^2 +|\ep|^2 \Vert w\Vert - \bar{\ep} (U -v, w) -\ep (w,U-v) \]
+
+        Sea $(U-v,w)= a e^{i\varphi}$  Sea $\ep= \rho e^{i\varphi} $ entonces la anterior desigualdad se convierte en
+        
+        \[ 0\leq \rho^2 \Vert w\Vert^2 -2 a \rho \;\; \forall \rho \]
+
+        cambia designo para $\rho$ pequeño a menos que $a=0$
+
+        \[\Rightarrow (U-v,w)=0\]
+
+    \end{proof}
+    
+\end{enumerate}
+
+\end{propiedades}
+
+\begin{propiedades} $M\subset H$ $H$ de Hilbert  $M^\perp$ cerrado 
+\begin{enumerate}
+    \item $M\subset N \Rightarrow N^\perp \subset M^\perp$
+    \item $\bar{M}^\perp = M^\perp$
+    \item $\forall U \in H \Rightarrow \text{existe un único  } v \in \bar{M}$
+
+    con $ U - v \in M^\perp \; \;  \Vert U-v\Vert = \underset{z\in \bar{M}}{inf} \Vert U-z\Vert$ Fig. (\ref{fig:3})
+    entonces $u= \underset{\underset{\bar{M}}{\rotin}}{v} \oplus \underset{\underset{\bar{M}^\perp}{\rotin}}{u -v}$
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{Screen Shot 2024-02-10 at 18.39.45.png}
+        \caption{Enter Caption}
+        \label{fig:3}
+    \end{figure}
+    \item $(M^\perp ) ^\perp = \bar{M}$
+
+    \begin{proof}
+        $(M^\perp)^\perp = \{ U : (U,v) =0 \;\; \forall v \in M^\perp\}$ 
+        si $U\in \bar{M} \Rightarrow u \perp v  \in  \bar{M}^\perp \Rightarrow \subset (M^\perp) $
+
+        si la inclusión es estricta $\Rightarrow$ existe $U\in (M^\perp)^\perp $ y $U\notin \bar{M}$  $\Rightarrow \exists v \in \bar{M} $  tal que  
+        $U-v \in M^\perp $, $\underset{\underset{\bar{M}}{\rotnotin}}{U} = v\notin \bar{M}$
+    \end{proof}
+    
+\end{enumerate}
+\end{propiedades}
+    
+\begin{ejemplo}
+    $H=H^1[a,b] = \{ U(x) con \Vert U \Vert_1^2= \int_a^b U^2 + {U'}^2 < \infty \}$
+
+    $= \{ U \text{limites en }  \Vert\;\; \Vert_1 \text{de sucesiones de Cauchy de funciones } C^1 \}$
+
+    $\{ U_n \}\in C^1$  tales que $\Vert U_n - U_m\Vert_1 \leq \ep, \; \;\; n,m\geq N$ 
+    
+    si $x>y$  entonces $U_n(x)-U_n(x)\leq \int_y^x U_n'(x) d\tau $
+
+    \[| U_n(x)-U_n(x) | \leq \int_y^x 1 |U_n'| d\tau \leq \left(  \int_x^y  d\tau \right)^{1/2}  \left( \int_x^y {U_n'}^2 d\tau \right)^{1/2} \]
+    \[ \leq (x-y)^{1/2} \left(\int_a^b {U_n'}^2 d\tau \right)^{1/2} \leq |y-x|^{1/2} \Vert U_n \Vert_1\]
+
+    Para $U_n-U_m \Rightarrow | U_n(x) - U_m(x) - ( U_n(y) -U_m(y) )| \leq |y-x|^{1/2}\Vert U_n-U_m \Vert$ 
+
+    $\Rightarrow \{ U_n\}$ es de Cauchy en la norma $C^{0,1/2}$ 
+    $=\{ U \text{Holder continua con exponente} 1/2 \}  $
+
+    \[ |U(x)-U(y)|\leq K |x-y|^{1/2}\]
+
+    \[\Vert U\Vert_{C^{0,1/2} } = max | U(x) | + \underset{x\neq y} { \max  } \frac{|U(x)-U(y)|}{|x-y|^{1/2}} \]
+
+    
+    \[\Rightarrow H^1[a,b] \subset C^{0,1/2}[a,b]\]
+    
+    $U(a)$ y $U(b)$ están definidos
+
+    
+    Sea  $ H_0^1[a,b] \equiv \{ U \in H^1 \text{ con } U(a)=U(b)= 0 \}$
+
+    es un subespacio cerrado de $H^1$
+
+    $M_0= \{ U \in C^1 \text{con} U(a)= U(b)= 0 \}$
+
+    $M_0= H_0^1 \text{  si  } U\in {H_0^1}^\perp \Leftrightarrow (U,h)_1=0   \: \forall h \in H_0^1 $
+
+    donde $(U,h)_1 = \int_a^b U h + U' h =0 \forall h \in C_0^\infty \subset H_0^1$
+
+    $U$ es un punto crítico de $\int_a^b U^2 + {U'}^2 $  
+
+    $\underset{euler}{\Rightarrow}$ $\frac{d}{dx} U'= U$   ($U$ es $C^2$)  entonces $U=Ae^{x} + B e^{-x}$
+
+    $\Rightarrow \dim {H_0^1}^\perp = 2 $
+    
+    
+\end{ejemplo}
+
+\begin{ejemplo}
+    Sea $ \Omega$ acotado en $\mathbb{R}^2$ decente $C^\infty$ (fluidos)  
+
+    $M_0=\{ \nabla f= ( f_1.f_2) \text{  con  } f \in C^\infty (\bar{\Omega}) \} $
+
+    $H = \widehat{M}^{\Vert \Vert_{L^2}} =  \{ (f_1,f_2)  \text{  y que existan  }  f_n C^\infty \text{  con  }  \nabla f_n \overset{L^2}{\rightarrow}(f_1,f_2)  \}$
+    
+    $M_1= \{ \nabla f \in M \text{ con } \nabla^2 f = 0  \} H_1= \bar{M_1} $
+
+    $(g_1,g_2) \in H_1 \Leftrightarrow \text{ existe } g_n  \text{ con }  \Delta g_n = 0 $
+
+    $ \nabla g_n \overset{L^2}{\rightarrow} (g_1,g_2) $
+
+    $ H = H_0 \oplus  H_1$
+
+    \begin{proof}
+        \[ M_0 \perp M_1 : \iint \nabla f \cdot \nabla g = - \iint_\Omega  f \underset{  \underset{0}{\parallel}  }{\Delta g}  + \int_{\partial \Omega} \underset{  \underset{0}{\parallel}  }{f} \frac{\partial g}{ \partial n} = 0\]
+
+        Si $\bar{f} = (f_1,f_2) \in H_0 $
+    
+        Si $\bar{g} = (g_1,g_2) \in H_1 $
+
+        $(\bar{f},\bar{g}) = ( \bar{f} - \nabla f_n ,\bar{g} ) + \overset{}{( \nabla f_n, \nabla g_n )} + (\nabla \bar{f}_n, \bar{g} - \nabla g_n  )$ 
+        
+        
+    
+    \end{proof}
+
+
+    
+\end{ejemplo}
+
+ 
 
 \end{document}
